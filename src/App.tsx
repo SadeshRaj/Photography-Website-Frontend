@@ -20,6 +20,11 @@ const queryClient = new QueryClient();
 const AnimatedRoutes = () => {
     const location = useLocation();
 
+    // 1. ADD THIS EFFECT: Automatically scroll to top whenever the path changes
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [location.pathname]);
+
     return (
         <PageTransition key={location.pathname}>
             <Routes location={location}>
@@ -66,7 +71,7 @@ const App = () => {
                         <AnimatedRoutes />
                     </BrowserRouter>
                 </div>
-                <Analytics /> {/* <--- Added Component */}
+                <Analytics />
             </TooltipProvider>
         </QueryClientProvider>
     );
